@@ -1,0 +1,11 @@
+[package]
+name = "xecho"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = "4.6.7"
+
+[dev-dependencies]
+assert_cmd = "2.2.2"
+predicates = "3.1.4"
