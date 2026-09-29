@@ -1,9 +1,19 @@
-use clap::Command;
+use crate::cli::Cli;
+use clap::Parser;
+use std::error::Error;
 
-fn main() {
-    Command::new("xecho")
-        .author("Xynorash <nashtefison@gmail.com")
-        .about("A Rust version of the echo command on GNU, built by Xynorash")
-        .version("0.1.0")
-        .get_matches();
+mod cli;
+
+type CliResult = Result<(), Box<dyn Error>>;
+
+fn main() -> CliResult {
+    let cli = Cli::parse();
+
+    let mut text = cli.text.join(" ");
+
+    text.push_str(if cli.omit_newline { "" } else { "\n" });
+
+    print!("{}", text);
+
+    Ok(())
 }
